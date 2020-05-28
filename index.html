@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Run Test</title>
+	<style type="text/css">
+	body{ background:#c0c0c0; margin:0; }
+
+	.canvasBox{
+		border:2px solid #1F263B;
+		background-color:black;
+	}
+	
+	.buttons{
+		height:34px; width:100%; display:flex; justify-content:space-between;
+	}
+	.buttons div{
+		flex-grow:1; outline:none; max-width:47%; background:#1F263B; color:#fff; border:1px solid #666; border-radius:4px; text-align:center; line-height:28px;
+	}
+	.buttons div:active{
+		background:#bbb;
+	}
+	.buttons div:hover, .buttons div:active{ outline:none; }
+
+	.options{
+		display:flex; height:35px; width:100%; margin-top:1px; overflow-x:scroll; overflow-y:hidden; white-space:nowrap; padding:1px; box-sizing:border-box; line-height:30px; background:#1F263B;
+	}
+	.options::-webkit-scrollbar{ display:none; }
+	.options > *{
+		display:inline-block; height:100%; min-width:25%; margin:0px 5px; background:#fff; padding:0px 4px; border-radius:2px; flex-shrink:0;
+	}
+	</style>
+</head>
+<body>
+	
+	<div class="buttons">
+		<div id="add">Add asteroid</div>
+		<div id="remove">Remove Asteroid</div>
+	</div>
+	
+	<div class="options">
+		<span><input type="checkbox" name="blackhole" id="blackhole" checked><label for="blackhole">Black Hole</label></span>
+		<span><input type="checkbox" name="friction" id="friction" checked><label for="friction">Friction</label></span>
+		<span><input type="checkbox" name="rotation" id="rotation" checked><label for="rotation">Rotation</label></span>
+		<span><input type="checkbox" name="boundary" id="boundary"><label for="boundary">Boundary</label></span>
+	</div>
+
+</body>
+
+<script type="text/javascript" src="libs/fullPrefixFree.js"></script>
+<script type="text/javascript" src="libs/lazy.min.js"></script>
+<script type="text/javascript" src="libs/jquery3.2.1.min.js"></script>
+<script type="text/javascript" src="libs/pixi.js"></script>
+
+
+<script type="text/javascript" src="index.js"></script>
+
+<script type="text/javascript">
+	//alert(Lazy(window).keys());
+</script>
+</html>
