@@ -147,7 +147,7 @@ function hitDetected(el1, el2){
 	//Use Pixi’s built-in `loader` object to load an image
 	var asteroids = ["img/asteroid1.png", "img/asteroid2.png", "img/asteroid3.png"]; 
 	PIXI.loader
-		.add(["img/ball.png", "img/bHole1.png", "img/bHole2.png", "img/bHole3.png", "img/star.png"])
+		.add(["img/bHole1.png", "img/star.png"])
 		.add(asteroids)
 	.load(setup);
 	//This `setup` function will run when the image has loaded
