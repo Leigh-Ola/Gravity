@@ -122,9 +122,16 @@ function hitDetected(el1, el2){
 /* Initialize and begin game */
 (function(){
 
+	function simulationSize() {
+		var width = document.documentElement.clientWidth;
+		var height = document.documentElement.clientHeight;
+		var desktop = width >= 768;
+		return { width: Math.max(200, width - (desktop ? 52 : 4)), height: Math.max(180, height - (desktop ? 220 : 80)) };
+	}
+	var size = simulationSize();
 	var app = new PIXI.Application({ 
-		width: window.innerWidth,//316,     // default: 800
-		height: window.innerHeight - 80,//370,   // default: 600
+		width: size.width,
+		height: size.height,
 		antialias: true,// default: false
 		transparent: false,// default: false
 		resolution: 1 // default: 1
@@ -166,11 +173,24 @@ function hitDetected(el1, el2){
 		
 		bHole_border = { x: (bHole.x-4), y: (bHole.y-4), width: 8, height: 8 };
 		
-		var stats = new PIXI.Text("0 Asteroids", {font: "16px", fill: "red", wordWrap : true, wordWrapWidth : 140});
-		stats.x = 100;
-		stats.y = 2;
+		var stats = new PIXI.Text("0 Asteroids", {fontSize: 16, fill: "#f2b6c7", wordWrap : true, wordWrapWidth : 140});
+		stats.x = 16;
+		stats.y = 12;
 		app.stage.addChild(stats);
 		game.storage.stats = stats;
+		window.addEventListener("resize", function() {
+			var next = simulationSize();
+			var scaleX = next.width / app.renderer.width;
+			var scaleY = next.height / app.renderer.height;
+			app.stage.children.forEach(function(sprite) {
+				if (sprite !== stats) { sprite.x *= scaleX; sprite.y *= scaleY; }
+			});
+			app.renderer.resize(next.width, next.height);
+			border1.width = next.width; border1.height = next.height;
+			bHole.position.set(next.width / 2, next.height / 2);
+			bHole_border = { x:bHole.x-4, y:bHole.y-4, width:8, height:8 };
+		});
+
 		
 		//Render the stage at intervals
 		game.begin(app);

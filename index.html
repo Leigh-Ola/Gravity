@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Run Test</title>
+<meta charset="utf-8">
+	<title>Gravity Sandbox</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">
 	body{ background:#c0c0c0; margin:0; }
 
@@ -29,8 +31,27 @@
 		display:inline-block; height:100%; min-width:25%; margin:0px 5px; background:#fff; padding:0px 4px; border-radius:2px; flex-shrink:0;
 	}
 	</style>
+<style>
+
+.desktop-intro { display:none; }
+.canvasBox { display:block; }
+.buttons div, .options label, .options input { cursor:pointer; }
+@media (min-width:768px) {
+ body { background:#0e1424; color:#e9edf6; font-family:Arial,sans-serif; }
+ .desktop-intro { display:block; position:absolute; top:22px; left:24px; margin:0; font-size:26px; }
+ .desktop-intro small { font-size:14px; font-weight:normal; color:#aab6d0; margin-left:18px; }
+ .canvasBox { margin:84px 24px 16px; border-radius:12px; border-color:#34425f; }
+ .buttons { width:600px; height:44px; margin:auto; gap:12px; }
+ .buttons div { max-width:none; line-height:42px; border-color:#475775; font-size:16px; }
+ .buttons div:hover { background:#34425f; }
+ .options { width:600px; height:40px; padding:0; margin:8px auto 24px; overflow:visible; background:none; gap:8px; }
+ .options > * { min-width:0; flex:1; margin:0; padding:0; border-radius:6px; background:#1f293e; display:flex; align-items:center; justify-content:center; gap:5px; }
+}
+
+</style>
 </head>
 <body>
+<h1 class="desktop-intro">Gravity <small>Add asteroids and explore their orbits.</small></h1>
 	
 	<div class="buttons">
 		<div id="add">Add asteroid</div>
