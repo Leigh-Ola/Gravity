@@ -314,7 +314,7 @@ function hitDetected(el1, el2){
 		spriteObj[id] = img;
 		game.addSprite(spriteObj);
 		
-/**/	var point = new PIXI.Text("000", {font: "10px", fill: "white", wordWrap : true, wordWrapWidth : 140});
+/**/	var point = new PIXI.Text("000", {fontSize: 10, fill: "white", wordWrap : true, wordWrapWidth : 140});
 		point.x = 30;
 		point.y = 30;
 		app.stage.addChild(point);/**/
@@ -331,11 +331,14 @@ function hitDetected(el1, el2){
 		}else{
 			var sprites = Lazy(game.getSprite()).omit(["bHole"]).toObject();
 			var spriteKeys = Object.keys(sprites);
-			var name = spriteKeys[randInt(0, spriteKeys.length)];
+			if (!spriteKeys.length) return;
+			var name = spriteKeys[randInt(0, spriteKeys.length - 1)];
 			var sprite = sprites[name];
 		}
-		sprite.visible = false;
-		game.storage.points[name].visible = false;
+		if (!sprite) return;
+		app.stage.removeChild(sprite);
+		app.stage.removeChild(game.storage.points[name]);
+		delete game.storage.points[name];
 		game.removeSprite(name);
 		var count = game.storage.stats;
 		count.text = ((Number(count.text.split(" ")[0])-1)+" Asteroids");
@@ -354,9 +357,11 @@ function hitDetected(el1, el2){
 	
 	
 	$("#add").click(function(){
+		if (!game.storage.stats) return;
 		addSprite(1);
 	});
 	$("#remove").click(function(){
+		if (!game.storage.stats) return;
 		removeSprite();
 	});
 	$("#blackhole").click(function(){
